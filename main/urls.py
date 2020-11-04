@@ -7,5 +7,6 @@ urlpatterns = [
     path('form/', views.UserRequestFormView.as_view(), name='my_form'),
     path('success/', views.success, name='success'),
     path('contact/', views.ContactPageView.as_view(), name='contact_url'),
+    path('products/', views.products, name='products'),
 
 ]

@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.views import generic
 
 from main.forms import CreateRequestForm, OnlineOfferForm
+from main.models import Category
 
 
 class UserRequestFormView(generic.FormView):
@@ -51,3 +52,10 @@ class ContactPageView(generic.FormView):
     #     context = super().get_context_data()
     #     context['settings'] = SiteSettings.objects.first()
     #     return context
+
+
+def products(request):
+    categories = Category.objects.all()
+    for item in categories:
+        print(item.product)
+    return render(request, "products.html", {"categories": categories})

@@ -16,3 +16,17 @@ class UserRequest(models.Model):
     class Meta:
         verbose_name = 'Customer request'
         verbose_name_plural = 'Customer requests'
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=128)
+
+    def get_products(self):
+        return Product.objects.filter(category=self)
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=128)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='product')
+
+
