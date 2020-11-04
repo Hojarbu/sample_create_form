@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form id=contact_form method=POST name=myform>
+            {% csrf_token %}
+            <div class="row clearfix">
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                    {{ form.name }}
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                     {{ form.email }}
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                   {{ form.subject }}
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                    {{ form.phone }}
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    {{ form.message }}
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                    <button class="theme-btn btn-style-two" type="submit" name="Submit">Send Massage
+                    </button>
+                </div>
+                  {% if messages %}
+                <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+                {% endif %}
+            </div>
+        </form>
+
+</div>
+</body>
+</html>
