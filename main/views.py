@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.views import generic
 
 from main.forms import CreateRequestForm, OnlineOfferForm
-from main.models import Category
+from main.models import Category, Product
 
 
 class UserRequestFormView(generic.FormView):
@@ -56,6 +56,13 @@ class ContactPageView(generic.FormView):
 
 def products(request):
     categories = Category.objects.all()
-    for item in categories:
-        print(item.product)
     return render(request, "products.html", {"categories": categories})
+
+
+def search(request):
+    results = None
+    search_query = request.GET.get('search_box', None)
+    if search_query != None:
+        results = Product.objects.filter(name__contains=search_query)
+    if results:
+        return render(request, "search.html", {"results": results})
